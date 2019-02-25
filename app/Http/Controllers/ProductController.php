@@ -17,7 +17,9 @@ class ProductController extends Controller
     public function index()
     {
         // Get data with pagination
-        $res = $this->getRangeFromFile(request()->start ?: 0, request()->length ?: 10);
+        $start = request()->start ?: 0;
+        $end = $start + request()->length ?: 10;
+        $res = $this->getRangeFromFile($start, $end);
         return array_merge(['draw' => request()->draw], $res);
     }
 
@@ -40,7 +42,7 @@ class ProductController extends Controller
             // Read file line by line
             while (($buffer = fgets($handle)) !== false) {
                 // If current line is in given range
-                if ($lines >= $start && $lines <= $end)
+                if ($lines >= $start && $lines < $end)
                     // Add line to results
                     $result []= json_decode($buffer);
                 $lines++;
