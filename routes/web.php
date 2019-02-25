@@ -12,5 +12,15 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('form');
 });
+
+Route::get('products', [
+	'uses' 	=> 'ProductController@index',
+	'as'	=> 'products.all'
+]);
+
+Route::post('products', [
+	'uses' 	=> 'ProductController@store',
+	'as'	=> 'products.store'
+]);
