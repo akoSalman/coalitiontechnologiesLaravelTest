@@ -1,6 +1,14 @@
 ## Installation and run
 
-Simply run `composer install` and then `php artisan serve`.
+Simply run `composer install` and then
+
+```
+cp .env.example .env
+
+php artisan key:generate
+
+php artisan serve
+```
 
 ## Features
 
